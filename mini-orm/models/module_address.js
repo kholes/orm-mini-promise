@@ -1,10 +1,10 @@
 let sqlite3=require('sqlite3').verbose();
 let db=new sqlite3.Database('./db/database.db');
 
-class Profile{
+class Address{
   static getAll(){
     let prom=new Promise((resolve,reject)=>{
-      db.all(`select * from tb_profile`,(err,data)=>{
+      db.all(`select * from tb_address`,(err,data)=>{
         if(!err){
           resolve(data);
         }else{
@@ -16,7 +16,7 @@ class Profile{
   }
   static getById(id){
     let prom=new Promise((resolve,reject)=>{
-      db.all(`select * from tb_profile where id=${id}`,(err,data)=>{
+      db.all(`select * from tb_address where id=${id}`,(err,data)=>{
         if(!err){
           resolve(data);
         }else{
@@ -26,10 +26,10 @@ class Profile{
     })
     return prom
   }
-  static insert(req){
+  static insert(id,req){
     let prom=new Promise((resolve,reject)=>{
-      db.run(`insert into tb_profile (name,company,address)
-      values ('${req.body.name}','${req.body.company}','${req.body.address}')`,(err,data)=>{
+      db.run(`insert into tb_address (street,city,id_profile)
+      values ('${req.body.street}','${req.body.city}','${req.body.id_profile}')`,(err,data)=>{
         if(!err){
           resolve("Data saved!");
         }else{
@@ -41,8 +41,8 @@ class Profile{
   }
   static update(id,req){
     let prom=new Promise((resolve,reject)=>{
-      db.run(`update tb_profile set name='${req.body.name}',company='${req.body.company}',
-      address='${req.body.address}')`,(err,data)=>{
+      db.run(`update tb_address set street='${req.body.street}', city='${req.body.city}',
+      id_profile='${req.body.id_profile}')`,(err,data)=>{
         if(!err){
           resolve("Data saved!");
         }else{
@@ -54,7 +54,7 @@ class Profile{
   }
   static del(id){
     let prom=new Promise((resolve,reject)=>{
-      db.run(`delete from tb_profile where id=${id}`,(err,data)=>{
+      db.run(`delete from tb_address where id=${id}`,(err,data)=>{
         if(!err){
           resolve("Data deleted");
         }else{
@@ -65,4 +65,4 @@ class Profile{
     return prom
   }
 }
-module.exports=Profile
+module.exports=Address
