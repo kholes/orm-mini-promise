@@ -42,7 +42,7 @@ route.post('/update/:id',(req,res)=>{
     console.log(err);
   })
 });
-route.post('/delete/:id',(req,res)=>{
+route.get('/delete/:id',(req,res)=>{
   let id=req.params.id;
   modelProfile.del(id)
   .then(data=>{
