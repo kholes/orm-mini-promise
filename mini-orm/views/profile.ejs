@@ -13,6 +13,8 @@
         <td><%=i.id%></td>
         <td><%=i.name%></td>
         <td><%=i.company%></td>
+        <td><a href="/profile/update/<%=i.id%>">Edit</td>
+        <td><a href="/profile/delete/<%=i.id%>">Delete</td>
       </tr>
       <%})%>
     </table>

@@ -16,7 +16,7 @@ class Profile{
   }
   static getById(id){
     let prom=new Promise((resolve,reject)=>{
-      db.all(`select * from tb_profile where id=${id}`,(err,data)=>{
+      db.each(`select * from tb_profile where id=${id}`,(err,data)=>{
         if(!err){
           resolve(data);
         }else{
@@ -42,9 +42,9 @@ class Profile{
   static update(id,req){
     let prom=new Promise((resolve,reject)=>{
       db.run(`update tb_profile set name='${req.body.name}',company='${req.body.company}',
-      address='${req.body.address}')`,(err,data)=>{
+      address='${req.body.address}' where id=${id}`,(err,data)=>{
         if(!err){
-          resolve("Data saved!");
+          resolve("Data update!");
         }else{
           reject(err);
         }
