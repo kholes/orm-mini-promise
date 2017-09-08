@@ -1,0 +1,20 @@
+<html>
+  <head>
+    <title>profile</title>
+  <head>
+  <body>
+    <h3>Profile</h3>
+    <table>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Company</th>
+      <% profile.forEach(i=>{%>
+      <tr>
+        <td><%=i.id%></td>
+        <td><%=i.name%></td>
+        <td><%=i.company%></td>
+      </tr>
+      <%})%>
+    </table>
+  </body>
+</html>

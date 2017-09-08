@@ -5,7 +5,8 @@ let sqlite3=require('sqlite3').verbose();
 let db=new sqlite3.Database('./db/database.db');
 app.use(bodyParser.urlencoded({ extended: false }))
 app.use(bodyParser.json())
-let index=require('./route/index');
+app.set('view engine', 'ejs');
+let index=require('./route/route_index');
 app.use('/',index);
 app.listen(4000, function () {
   console.log('Example app listening on port 4000');
